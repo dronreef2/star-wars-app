@@ -5,6 +5,74 @@ import type { GameResult, PlayerStats } from './rankingService';
 class MockSupabaseService {
   private mockData: GameResult[] = [];
   
+  constructor() {
+    // Carregar dados do localStorage se existirem
+    this.loadFromLocalStorage();
+    
+    // Inicializar com alguns dados de demonstração se vazio
+    if (this.mockData.length === 0) {
+      this.initializeDemoData();
+    }
+  }
+  
+  private loadFromLocalStorage() {
+    try {
+      const saved = localStorage.getItem('star-wars-offline-data');
+      if (saved) {
+        this.mockData = JSON.parse(saved);
+        console.log('📱 Dados offline carregados do localStorage:', this.mockData.length);
+      }
+    } catch (error) {
+      console.warn('⚠️ Erro ao carregar dados offline:', error);
+    }
+  }
+  
+  private saveToLocalStorage() {
+    try {
+      localStorage.setItem('star-wars-offline-data', JSON.stringify(this.mockData));
+    } catch (error) {
+      console.warn('⚠️ Erro ao salvar dados offline:', error);
+    }
+  }
+    private initializeDemoData() {
+    const demoResults: GameResult[] = [
+      {
+        id: 'demo-1',
+        players: [
+          { name: 'Demo Player', score: 8, percentage: 80 },
+          { name: 'Jedi Trainee', score: 6, percentage: 60 }
+        ],
+        winner: 'Demo Player',
+        totalQuestions: 10,
+        date: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString() // 1 dia atrás
+      },
+      {
+        id: 'demo-2',
+        players: [
+          { name: 'Jedi Master', score: 9, percentage: 90 },
+          { name: 'Sith Apprentice', score: 7, percentage: 70 }
+        ],
+        winner: 'Jedi Master',
+        totalQuestions: 10,
+        date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString() // 2 dias atrás
+      },
+      {
+        id: 'demo-3',
+        players: [
+          { name: 'Sith Lord', score: 10, percentage: 100 },
+          { name: 'Rebel Fighter', score: 8, percentage: 80 }
+        ],
+        winner: 'Sith Lord',
+        totalQuestions: 10,
+        date: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString() // 3 dias atrás
+      }
+    ];
+    
+    this.mockData = demoResults;
+    this.saveToLocalStorage();
+    console.log('🎮 Dados de demonstração inicializados');
+  }
+  
   async saveGameResult(result: Omit<GameResult, 'id' | 'date'>): Promise<GameResult> {
     const gameResult: GameResult = {
       ...result,
