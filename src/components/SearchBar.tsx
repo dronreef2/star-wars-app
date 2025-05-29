@@ -29,31 +29,44 @@ export function SearchBar({
       onClear();
     }
   }, [onClear]);
-
   return (
-    <form onSubmit={handleSubmit} className={`relative ${className}`}>
+    <form onSubmit={handleSubmit} className={`relative group ${className}`}>
       <div className="relative">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <Search className="h-5 w-5 text-gray-400" />
+        {/* Holographic glow background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-cyan-400/20 to-blue-500/20 rounded-lg blur-sm opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+        
+        {/* Search icon with glow effect */}
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
+          <Search className="h-5 w-5 text-cyan-400 filter drop-shadow-[0_0_6px_rgba(34,211,238,0.6)] group-focus-within:drop-shadow-[0_0_12px_rgba(34,211,238,0.8)] transition-all duration-300" />
         </div>
         
+        {/* Main input field */}
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholder}
-          className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+          className="relative block w-full pl-10 pr-12 py-3 border-2 border-slate-600 rounded-lg bg-slate-800/80 backdrop-blur-sm text-cyan-100 placeholder-slate-400 font-orbitron tracking-wider
+                   focus:outline-none focus:border-cyan-400 focus:bg-slate-800/90 focus:shadow-[0_0_20px_rgba(34,211,238,0.3)] 
+                   transition-all duration-300 hover:border-cyan-500/50 hover:bg-slate-800/85"
         />
         
+        {/* Scanning line effect on focus */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none rounded-lg scanning-line" />
+        
+        {/* Clear button with hover effects */}
         {query && (
           <button
             type="button"
             onClick={handleClear}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center hover:text-gray-600 transition-colors"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center z-10 group/clear hover:scale-110 transition-transform duration-200"
           >
-            <X className="h-5 w-5 text-gray-400" />
+            <X className="h-5 w-5 text-slate-400 group-hover/clear:text-red-400 group-hover/clear:drop-shadow-[0_0_8px_rgba(239,68,68,0.6)] transition-all duration-300" />
           </button>
         )}
+        
+        {/* Bottom glow line */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
       </div>
       
       <button

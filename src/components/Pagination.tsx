@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 interface PaginationProps {
   currentPage: number;
@@ -25,46 +25,63 @@ export function Pagination({ currentPage, totalPages, onPageChange, className = 
   }
 
   if (totalPages <= 1) return null;
-
   return (
-    <div className={`flex items-center justify-center space-x-2 ${className}`}>
-      {/* Botão Anterior */}
-      <button
+    <div className={`flex items-center justify-center space-x-3 p-4 ${className}`}>
+      {/* Botão Anterior */}      <button
+        type="button"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="group relative inline-flex items-center px-4 py-2 text-sm font-bold font-orbitron text-cyan-300 bg-slate-800 border-2 border-slate-600 rounded-lg hover:border-cyan-400 hover:text-cyan-200 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-slate-600 disabled:hover:bg-slate-800 transition-all duration-300 tracking-wider overflow-hidden"
       >
-        <ChevronLeft className="h-4 w-4 mr-1" />
-        Anterior
+        {/* Glow effect on hover */}
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-transparent opacity-0 group-hover:opacity-100 group-disabled:opacity-0 transition-opacity duration-300" />
+        
+        <ChevronRight className="h-4 w-4 mr-2 rotate-180 filter drop-shadow-[0_0_6px_rgba(34,211,238,0.6)] group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] transition-all duration-300" />
+        <span className="relative z-10">ANTERIOR</span>
       </button>
 
       {/* Primeira página */}
       {startPage > 1 && (
-        <>
-          <button
+        <>          <button
+            type="button"
             onClick={() => onPageChange(1)}
-            className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-colors"
+            className="group relative px-4 py-2 text-sm font-bold font-orbitron text-slate-300 bg-slate-800 border-2 border-slate-600 rounded-lg hover:border-yellow-400 hover:text-yellow-300 hover:bg-slate-700 transition-all duration-300 tracking-wider overflow-hidden"
           >
-            1
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="relative z-10">1</span>
           </button>
           {startPage > 2 && (
-            <span className="px-2 py-2 text-sm text-gray-500">...</span>
+            <div className="flex items-center space-x-1">
+              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
+              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }} />
+              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }} />
+            </div>
           )}
         </>
       )}
 
       {/* Páginas visíveis */}
-      {pages.map((page) => (
-        <button
+      {pages.map((page) => (        <button
+          type="button"
           key={page}
           onClick={() => onPageChange(page)}
-          className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+          className={`group relative px-4 py-2 text-sm font-bold font-orbitron rounded-lg transition-all duration-300 tracking-wider overflow-hidden ${
             page === currentPage
-              ? 'text-white bg-blue-600 border border-blue-600'
-              : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-50 hover:text-gray-700'
+              ? 'text-yellow-300 bg-yellow-500/20 border-2 border-yellow-400 shadow-[0_0_20px_rgba(251,191,36,0.4)] transform scale-110'
+              : 'text-slate-300 bg-slate-800 border-2 border-slate-600 hover:border-yellow-400 hover:text-yellow-300 hover:bg-slate-700'
           }`}
         >
-          {page}
+          {/* Active page glow */}
+          {page === currentPage && (
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 via-yellow-300/20 to-yellow-400/20 animate-pulse" />
+          )}
+          
+          {/* Hover effect for non-active pages */}
+          {page !== currentPage && (
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          )}
+          
+          <span className="relative z-10">{page}</span>
         </button>
       ))}
 
@@ -72,25 +89,33 @@ export function Pagination({ currentPage, totalPages, onPageChange, className = 
       {endPage < totalPages && (
         <>
           {endPage < totalPages - 1 && (
-            <span className="px-2 py-2 text-sm text-gray-500">...</span>
-          )}
-          <button
+            <div className="flex items-center space-x-1">
+              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
+              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }} />
+              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }} />
+            </div>
+          )}          <button
+            type="button"
             onClick={() => onPageChange(totalPages)}
-            className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-colors"
+            className="group relative px-4 py-2 text-sm font-bold font-orbitron text-slate-300 bg-slate-800 border-2 border-slate-600 rounded-lg hover:border-yellow-400 hover:text-yellow-300 hover:bg-slate-700 transition-all duration-300 tracking-wider overflow-hidden"
           >
-            {totalPages}
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="relative z-10">{totalPages}</span>
           </button>
         </>
       )}
 
-      {/* Botão Próximo */}
-      <button
+      {/* Botão Próximo */}      <button
+        type="button"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="group relative inline-flex items-center px-4 py-2 text-sm font-bold font-orbitron text-cyan-300 bg-slate-800 border-2 border-slate-600 rounded-lg hover:border-cyan-400 hover:text-cyan-200 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-slate-600 disabled:hover:bg-slate-800 transition-all duration-300 tracking-wider overflow-hidden"
       >
-        Próximo
-        <ChevronRight className="h-4 w-4 ml-1" />
+        {/* Glow effect on hover */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-cyan-400/10 opacity-0 group-hover:opacity-100 group-disabled:opacity-0 transition-opacity duration-300" />
+        
+        <span className="relative z-10">PRÓXIMO</span>
+        <ChevronRight className="h-4 w-4 ml-2 filter drop-shadow-[0_0_6px_rgba(34,211,238,0.6)] group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] transition-all duration-300" />
       </button>
     </div>
   );

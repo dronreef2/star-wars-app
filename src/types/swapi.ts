@@ -118,7 +118,7 @@ export interface Species {
   url: string;
 }
 
-export type ResourceType = 'people' | 'planets' | 'films' | 'starships' | 'vehicles' | 'species';
+export type ResourceType = 'people' | 'planets' | 'films' | 'starships' | 'vehicles' | 'species' | 'quiz' | 'ranking';
 
 export interface SwapiRoot {
   films: string;

@@ -1,15 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Exo 2', 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light;
-  color: #213547;
-  background-color: #ffffff;
+  color-scheme: dark;
+  color: #ffffff;
+  background-color: #000000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -26,19 +27,426 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background: 
+    /* Nebulosas dinâmicas melhoradas */
+    radial-gradient(ellipse at 10% 10%, rgba(0, 255, 255, 0.25) 0%, rgba(0, 255, 255, 0.1) 30%, transparent 60%),
+    radial-gradient(ellipse at 90% 90%, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.08) 35%, transparent 65%),
+    radial-gradient(ellipse at 50% 20%, rgba(138, 43, 226, 0.18) 0%, rgba(138, 43, 226, 0.06) 40%, transparent 70%),
+    radial-gradient(ellipse at 80% 30%, rgba(255, 69, 0, 0.15) 0%, rgba(255, 69, 0, 0.05) 45%, transparent 75%),
+    radial-gradient(ellipse at 20% 80%, rgba(30, 144, 255, 0.16) 0%, rgba(30, 144, 255, 0.04) 40%, transparent 70%),
+    radial-gradient(ellipse at 70% 70%, rgba(255, 20, 147, 0.12) 0%, rgba(255, 20, 147, 0.03) 35%, transparent 65%),
+    radial-gradient(ellipse at 40% 60%, rgba(0, 255, 127, 0.08) 0%, transparent 50%),
+    /* Galáxia espiral de fundo */
+    conic-gradient(from 0deg at 50% 50%, 
+      rgba(138, 43, 226, 0.05) 0deg, 
+      rgba(30, 144, 255, 0.08) 90deg, 
+      rgba(255, 215, 0, 0.06) 180deg, 
+      rgba(255, 69, 0, 0.07) 270deg, 
+      rgba(138, 43, 226, 0.05) 360deg),
+    /* Base galáctica */
+    linear-gradient(135deg, #000000 0%, #0f0f23 20%, #1a1a2e 40%, #16213e 60%, #0e1b2e 80%, #000814 100%);
+  background-attachment: fixed;
+  background-size: 120% 120%, 110% 110%, 130% 130%, 140% 140%, 125% 125%, 135% 135%, 100% 100%, 200% 200%, 100% 100%;
+  overflow-x: hidden;
+  position: relative;
+  /* Animação sutil de respiração galáctica */
+  animation: galactic-pulse 20s ease-in-out infinite;
+}
+
+/* Efeito de galáxia em movimento melhorado */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at top, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
+    radial-gradient(ellipse at bottom, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+  animation: galaxy-rotation 60s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Partículas flutuantes adicionais */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(0, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255, 215, 0, 0.8), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(138, 43, 226, 0.7), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: float-particles 25s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+@keyframes galaxy-rotation {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Nova animação de respiração galáctica */
+@keyframes galactic-pulse {
+  0%, 100% { 
+    background-size: 120% 120%, 110% 110%, 130% 130%, 140% 140%, 125% 125%, 135% 135%, 100% 100%, 200% 200%, 100% 100%;
+    filter: brightness(1) saturate(1);
+  }
+  25% { 
+    background-size: 125% 125%, 115% 115%, 135% 135%, 145% 145%, 130% 130%, 140% 140%, 105% 105%, 210% 210%, 105% 105%;
+    filter: brightness(1.1) saturate(1.1);
+  }
+  50% { 
+    background-size: 130% 130%, 120% 120%, 140% 140%, 150% 150%, 135% 135%, 145% 145%, 110% 110%, 220% 220%, 110% 110%;
+    filter: brightness(1.2) saturate(1.2);
+  }
+  75% { 
+    background-size: 125% 125%, 115% 115%, 135% 135%, 145% 145%, 130% 130%, 140% 140%, 105% 105%, 210% 210%, 105% 105%;
+    filter: brightness(1.1) saturate(1.1);
+  }
+}
+
+/* Animação de partículas flutuantes */
+@keyframes float-particles {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px) rotate(120deg);
+  }
+  66% {
+    transform: translateY(-10px) translateX(-10px) rotate(240deg);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(360deg);
+  }
 }
 
 #root {
   width: 100%;
+  position: relative;
 }
 
-/* Estilos customizados para a aplicação Star Wars */
+/* Fonte Star Wars */
 .star-wars-font {
-  font-family: 'Star Jedi', 'Arial Black', Arial, sans-serif;
+  font-family: 'Orbitron', 'Arial Black', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-/* Animações */
-@keyframes fadeIn {
+/* Efeito de texto holográfico */
+.hologram-text {
+  text-shadow: 
+    0 0 5px #00ffff,
+    0 0 10px #00ffff,
+    0 0 15px #00ffff,
+    0 0 20px #00ffff;
+  animation: flicker 2s infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow: 
+      0 0 5px #00ffff,
+      0 0 10px #00ffff,
+      0 0 15px #00ffff,
+      0 0 20px #00ffff;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+/* Efeito de glow dourado */
+.golden-glow {
+  text-shadow: 
+    0 0 5px #ffd700,
+    0 0 10px #ffd700,
+    0 0 15px #ffd700,
+    0 0 20px #ffd700;
+}
+
+/* Efeito saber de luz */
+.lightsaber-glow {
+  box-shadow: 
+    0 0 10px #00ff00,
+    0 0 20px #00ff00,
+    0 0 30px #00ff00,
+    inset 0 0 10px #00ff00;
+  animation: saber-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes saber-pulse {
+  0% {
+    box-shadow: 
+      0 0 10px #00ff00,
+      0 0 20px #00ff00,
+      0 0 30px #00ff00,
+      inset 0 0 10px #00ff00;
+  }
+  100% {
+    box-shadow: 
+      0 0 15px #00ff00,
+      0 0 30px #00ff00,
+      0 0 45px #00ff00,
+      inset 0 0 15px #00ff00;
+  }
+}
+
+/* Efeito lado sombrio */
+.dark-side-glow {
+  box-shadow: 
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 30px #ff0000,
+    inset 0 0 10px #ff0000;
+}
+
+/* Animações épicas */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes starWarsZoom {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes hyperspace {
+  0% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateZ(100px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes meteor {
+  0% {
+    transform: translateX(-100vw) translateY(0) rotate(45deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw) translateY(-50vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateY(-6rem) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateY(-6rem) rotate(-360deg);
+  }
+}
+
+@keyframes slide-in-from-space {
+  0% {
+    transform: translateZ(-1000px) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateZ(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes energy-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.8);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(251, 191, 36, 1), 0 0 60px rgba(34, 211, 238, 0.5);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes holographic-flicker {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+  }
+  50% {
+    opacity: 0.8;
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff;
+  }
+}
+
+/* Classes de animação */
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 0.8s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInFromRight 0.8s ease-out;
+}
+
+.star-wars-zoom {
+  animation: starWarsZoom 0.8s ease-out;
+}
+
+.hyperspace {
+  animation: hyperspace 2s ease-in-out;
+}
+
+.slide-in-from-space {
+  animation: slide-in-from-space 2s ease-out;
+}
+
+.energy-pulse {
+  animation: energy-pulse 3s ease-in-out infinite;
+}
+
+.holographic-text {
+  animation: holographic-flicker 4s ease-in-out infinite;
+}
+
+/* Efeito de partículas/estrelas no fundo */
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite;
+}
+
+.star:nth-child(odd) { animation-delay: 1s; }
+.star:nth-child(even) { animation-delay: 2s; }
+
+/* Efeito de grade futurística */
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Scrollbar personalizada Star Wars */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, #000000, #1a1a2e);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #ffd700, #ffed4a);
+  border-radius: 6px;
+  box-shadow: 0 0 10px #ffd700;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #ffed4a, #ffd700);
+  box-shadow: 0 0 15px #ffd700;
+}
+
+/* Scrollbar customizada para o Quiz */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #eab308 #374151;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #374151;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #eab308, #f59e0b);
+  border-radius: 4px;
+  border: 1px solid #1f2937;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #f59e0b, #d97706);
+}
+
+/* Animação de entrada para os elementos do Quiz */
+.quiz-fade-in {
+  animation: quiz-fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes quiz-fadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -49,30 +457,239 @@ body {
   }
 }
 
-.fade-in {
-  animation: fadeIn 0.5s ease-out;
+/* Efeito de hover para os botões de resposta */
+.answer-button-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Scrollbar customizada */
-::-webkit-scrollbar {
-  width: 8px;
+.answer-button-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(234, 179, 8, 0.2);
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+/* Animação de sucesso/erro */
+.answer-feedback {
+  animation: answer-pulse 0.5s ease-in-out;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
+@keyframes answer-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+/* Melhorias para tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sw-card {
+    margin: 0.5rem;
+    padding: 1.25rem;
+  }
+  
+  .star-wars-font {
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+  }
 }
 
-/* Estilo para focus */
-.focus-ring:focus {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
+/* Melhorias de responsividade para diferentes tamanhos de tela */
+@media (min-width: 1536px) {
+  /* Para telas 2xl e maiores */
+  .grid-cols-1.sm\:grid-cols-2.md\:grid-cols-2.lg\:grid-cols-3.xl\:grid-cols-4.\32 xl\:grid-cols-5 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1920px) {
+  /* Para telas muito grandes */
+  .grid-cols-1.sm\:grid-cols-2.md\:grid-cols-2.lg\:grid-cols-3.xl\:grid-cols-4.\32 xl\:grid-cols-5 {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+}
+
+/* Otimização para tablets em landscape */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .grid-cols-1.sm\:grid-cols-2.md\:grid-cols-2.lg\:grid-cols-3.xl\:grid-cols-4.\32 xl\:grid-cols-5 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Melhor aproveitamento do espaço horizontal */
+@media (min-width: 1280px) {
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Container principal com melhor uso do espaço */
+  main {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Cards com altura mínima consistente */
+.card-grid-item {
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+}
+
+/* Otimização para mobile */
+@media (max-width: 640px) {
+  .card-grid-item {
+    min-height: 280px;
+  }
+}
+
+/* Otimizações para telas grandes */
+@media (min-width: 1920px) {
+  body {
+    background-size: 110% 110%, 120% 120%, 115% 115%, 125% 125%, 118% 118%, 122% 122%, 105% 105%, 180% 180%, 105% 105%;
+  }
+  
+  body::after {
+    background-size: 250px 125px;
+    opacity: 0.8;
+  }
+}
+
+/* Novas animações épicas para o header */
+@keyframes meteor {
+  0% {
+    transform: translateX(-100vw) translateY(0) rotate(45deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw) translateY(-50vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateY(-6rem) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateY(-6rem) rotate(-360deg);
+  }
+}
+
+@keyframes slide-in-from-space {
+  0% {
+    transform: translateZ(-1000px) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateZ(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes energy-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.8);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(251, 191, 36, 1), 0 0 60px rgba(34, 211, 238, 0.5);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes holographic-flicker {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+  }
+  50% {
+    opacity: 0.8;
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff;
+  }
+}
+
+/* Classes de animação melhoradas */
+.slide-in-from-space {
+  animation: slide-in-from-space 2s ease-out;
+}
+
+.energy-pulse {
+  animation: energy-pulse 3s ease-in-out infinite;
+}
+
+.holographic-text {
+  animation: holographic-flicker 4s ease-in-out infinite;
+}
+
+/* Efeito de varredura melhorado */
+.scanning-light-slow {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(34, 211, 238, 0.1) 25%, 
+    rgba(34, 211, 238, 0.3) 50%, 
+    rgba(34, 211, 238, 0.1) 75%, 
+    transparent 100%);
+  animation: scanning 6s linear infinite;
+}
+
+/* Efeito de nebulosa pulsante no fundo */
+.nebula-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 25% 25%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 75%, rgba(255, 69, 0, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 10%, rgba(0, 255, 255, 0.08) 0%, transparent 60%);
+  animation: nebula-drift 40s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Animação de deriva da nebulosa */
+@keyframes nebula-drift {
+  0%, 100% {
+    transform: translateX(0) translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateX(20px) translateY(-15px) scale(1.05);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(-10px) translateY(20px) scale(0.95);
+    opacity: 0.7;
+  }
+  75% {
+    transform: translateX(-20px) translateY(-10px) scale(1.02);
+    opacity: 0.9;
+  }
+}
+
+@keyframes scanning {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Esconder scrollbar mas manter funcionalidade */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
