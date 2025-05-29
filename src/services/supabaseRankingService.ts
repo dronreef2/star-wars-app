@@ -10,14 +10,13 @@ export interface SystemStats {
   mostActivePlayer: PlayerStats | null;
 }
 
-class SupabaseRankingService {
-  // Salvar resultado de uma partida no Supabase
+class SupabaseRankingService {  // Salvar resultado de uma partida no Supabase
   async saveGameResult(result: Omit<GameResult, 'id' | 'date'>): Promise<GameResult> {
     const gameResult: GameResult = {
       ...result,
       id: this.generateId(),
       date: new Date().toISOString()
-    };
+    };    console.log('🔧 Tentando salvar resultado:', gameResult);
 
     // Salva no Supabase
     const { error } = await supabase
@@ -25,8 +24,13 @@ class SupabaseRankingService {
       .insert(gameResult);
 
     if (error) {
-      console.error('Erro ao salvar resultado no Supabase:', error);
-      throw new Error('Falha ao salvar resultado do jogo');
+      console.error('❌ Erro detalhado ao salvar resultado:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code
+      });
+      throw new Error(`Falha ao salvar resultado: ${error.message}`);
     }
 
     // Atualiza as estatísticas do jogador
