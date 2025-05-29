@@ -1,8 +1,11 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Configuração do Supabase
-// NOTA: Estas são credenciais temporárias para resolver o erro 401 no GitHub Pages
-// Em produção, use GitHub Secrets conforme documentado em CONFIGURAR-SECRETS.md
+// NOTA: Para resolver definitivamente o erro 401, configure novas credenciais:
+// 1. Acesse: https://supabase.com/dashboard
+// 2. Selecione o projeto "yexmstntkspbvhipkvev"
+// 3. Settings > API > Copie novas credenciais
+// 4. Configure GitHub Secrets conforme CONFIGURAR-SECRETS.md
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://yexmstntkspbvhipkvev.supabase.co';
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlleG1zdG50a3NwYnZoaXBrdmV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY5NDk5MDksImV4cCI6MjA1MjUyNTkwOX0.9aQU3pfnl_G4dP8e8cF2BzEQCFNgDvKYuSSTl0KEgQ0';
 
