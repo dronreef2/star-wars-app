@@ -12,6 +12,7 @@ import { StarshipCard } from './components/StarshipCard';
 import { Card, DetailItem } from './components/Card';
 import { Quiz } from './components/Quiz';
 import { Ranking } from './components/Ranking';
+import { RankingSupabase } from './components/RankingSupabase';
 import { useSwapiData, useSwapiSearch } from './hooks/useSwapi';
 import type { ResourceType, Person, Planet, Film, Starship, Vehicle, Species } from './types/swapi';
 
@@ -87,6 +88,16 @@ function App() {
         <Header />
         <Navigation activeTab={activeTab} onTabChange={handleTabChange} />
         <Ranking />
+      </div>
+    );
+  }
+  
+  if (activeTab === 'rankingOnline') {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <Navigation activeTab={activeTab} onTabChange={handleTabChange} />
+        <RankingSupabase />
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import { User, Globe, Film, Rocket, Car, Users, Brain, Medal } from 'lucide-react';
+import { User, Globe, Film, Rocket, Car, Users, Brain, Medal, Cloud } from 'lucide-react';
 import type { ResourceType } from '../types/swapi';
 
 interface NavigationProps {
@@ -15,6 +15,7 @@ const tabs = [
   { id: 'species' as ResourceType, label: 'Espécies', icon: Users },
   { id: 'quiz' as ResourceType, label: 'Quiz', icon: Brain },
   { id: 'ranking' as ResourceType, label: 'Ranking', icon: Medal },
+  { id: 'rankingOnline' as ResourceType, label: 'Ranking Online', icon: Cloud },
 ];
 
 export function Navigation({ activeTab, onTabChange }: NavigationProps) {

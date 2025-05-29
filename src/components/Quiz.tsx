@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import swapiService from '../services/swapiService';
 import { rankingService } from '../services/rankingService';
+import { supabaseRankingService } from '../services/supabaseRankingService';
 import type { Film, Person } from '../types/swapi';
 import { 
   Trophy, 
@@ -237,21 +238,24 @@ export function Quiz() {
         questionId: currentQuestion.id,
         correct: isCorrect,
         answer: currentQuestion.options[selectedAnswer]
-      });      // Próxima pergunta ou fim do jogo
+      });
+      
+      // Próxima pergunta ou fim do jogo
       if (newState.currentQuestion + 1 < newState.totalQuestions) {
         newState.currentQuestion += 1;
         newState.currentPlayer = newState.currentPlayer === 0 ? 1 : 0;
       } else {
         newState.gamePhase = 'finished';
         
-        // Salvar resultado no ranking
+        // Determinar o vencedor e salvar resultado
         const winner = newState.players[0].score > newState.players[1].score ? 
           newState.players[0].name :
           newState.players[1].score > newState.players[0].score ? 
           newState.players[1].name : 
           null;
-
-        rankingService.saveGameResult({
+          
+        // Preparar os dados do resultado
+        const gameResult = {
           players: newState.players.map(player => ({
             name: player.name,
             score: player.score,
@@ -259,7 +263,15 @@ export function Quiz() {
           })),
           winner,
           totalQuestions: newState.totalQuestions
-        });
+        };
+
+        // Salvar localmente
+        rankingService.saveGameResult(gameResult);
+        
+        // Salvar no Supabase (assíncrono, não bloqueia a UI)
+        supabaseRankingService.saveGameResult(gameResult)
+          .then(() => console.log("Resultado salvo com sucesso no Supabase"))
+          .catch(error => console.error("Erro ao salvar no Supabase:", error));
       }
 
       return newState;
