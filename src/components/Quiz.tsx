@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import swapiService from '../services/swapiService';
 import { rankingService } from '../services/rankingService';
-import { supabaseRankingService } from '../services/supabaseRankingService';
+import { hybridRankingService } from '../services/hybridRankingService';
 import type { Film, Person } from '../types/swapi';
 import { 
   Trophy, 
@@ -269,7 +269,7 @@ export function Quiz() {
         rankingService.saveGameResult(gameResult);
         
         // Salvar no Supabase (assíncrono, não bloqueia a UI)
-        supabaseRankingService.saveGameResult(gameResult)
+        hybridRankingService.saveGameResult(gameResult)
           .then(() => console.log("Resultado salvo com sucesso no Supabase"))
           .catch(error => console.error("Erro ao salvar no Supabase:", error));
       }
